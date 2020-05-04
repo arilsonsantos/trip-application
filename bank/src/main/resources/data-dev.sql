@@ -1,0 +1,1 @@
+insert into cartao (id, codigo_seguranca, numero_cartao, valor_credito) values (1, 90, 12345678, 200);

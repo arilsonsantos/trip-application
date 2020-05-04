@@ -1,0 +1,18 @@
+server:
+  port: 8888
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  profiles:
+    active:
+    - native
+  devtools:
+    add-properties: false
+  cloud:
+    config:
+      server:
+        native:
+          search-locations:
+          - classpath:/configs

@@ -1,0 +1,5 @@
+@host = http://localhost:8282
+@chave = c4ed9fca-89cf-4e57-a66d-155af78693c5
+###
+
+{{host}}/{{chave}}

@@ -1,0 +1,37 @@
+spring:
+  devtools:
+    livereload:
+      port: 38081
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:buytrip-dev-db;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    data:
+    - classpath:data-dev.sql  
+  jpa:
+    database: H2
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:buytrip-prod-db;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    data:
+    - classpath:data-prod.sql
+  jpa:
+    database: H2
+    hibernate:
+      ddl-auto: create-drop

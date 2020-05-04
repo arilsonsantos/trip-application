@@ -1,0 +1,63 @@
+{
+    "configurations": [
+        {
+            "name": "Bank",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "br.com.orion.bank.BankApplication",
+            "projectName": "bank"
+        },
+        {
+            "name": "ByTripSeriveDiscovery",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "br.com.orion.buytripservicediscovery.BuyTripServiceDiscoveryApplication",
+            "projectName": "buytripservicediscovery"
+        },
+        {
+            "name": "BuyTrip 8180",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "br.com.orion.buytrip.BuyTripApplication",
+            "projectName": "buytrip",
+            "vmArgs": "-Dserver.port=8180"
+        },
+        {
+            "name": "BuyTrip 8181",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "br.com.orion.buytrip.BuyTripApplication",
+            "projectName": "buytrip",
+            "vmArgs": "-Dserver.port=8181"
+        },
+        {
+            "type": "java",
+            "name": "BuyProcess",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.orion.buyprocess.BuyProcessApplication",
+            "projectName": "buyprocess"
+        },
+        {
+            "name": "buyfeedback",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "br.com.orion.buyfeedback.BuyFeedbackApplication",
+            "projectName": "buyfeedback"
+        },
+        {
+            "name": "BuyGateway",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "br.com.orion.buygateway.BuyGatewayApplication",
+            "projectName": "buygateway"
+        },
+        {
+            "type": "java",
+            "name": "buyprocess",
+            "request": "launch",
+            "mainClass": "br.com.orion.buyprocess.BuyProcessApplication",
+            "projectName": "client"
+        }
+    ]
+}

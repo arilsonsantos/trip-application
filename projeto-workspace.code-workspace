@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "./bank"
+		},
+		{
+			"path": "./buytrip"
+		},
+		{
+			"path": "buytrip-config"
+		},
+		{
+			"path": "./buytrip-feedback"
+		},
+		{
+			"path": "./buytrip-gateway"
+		},
+		{
+			"path": "./buytrip-process"
+		},
+		{
+			"path": "./buytrip-servicediscovery"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+	}
+}

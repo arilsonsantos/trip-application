@@ -1,0 +1,60 @@
+spring:
+  profiles: dev
+  cloud:
+    loadbalancer:
+      ribbon:
+        enable: false
+    stream:
+      bindings:
+        compraOut:
+          destination: compra-channel
+          binder: local_rabbit
+      binders:
+        local_rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+
+---
+
+spring:
+  profiles: prod
+  cloud:
+    loadbalancer:
+      ribbon:
+        enable: false
+    stream:
+      bindings:
+        compraOut:
+          destination: compra-channel
+          binder: local_rabbit
+      binders:
+        local_rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+
+---
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8383/eureka/
+
+info:
+  application: ${spring.application.name}
+  port: ${server.port}

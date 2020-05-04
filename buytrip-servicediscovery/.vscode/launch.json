@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": " ",
+            "request": "launch",
+            "mainClass": "br.com.orion.buytripservicediscovery.BuyTripServiceDiscoveryApplication",
+            "projectName": "buytripservicediscovery",
+        }
+    ]
+}

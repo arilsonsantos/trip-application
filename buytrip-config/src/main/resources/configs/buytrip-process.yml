@@ -1,0 +1,46 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        compraIn:
+          destination: compra-channel
+          group: compra
+        compraOut:
+          destination: compra-channel
+          group: compra
+          binder: local_rabbit
+        pagamentoOut:
+          destination: pagamento-channel
+          binder: local_rabbit          
+      binders:
+        local_rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+
+hystrix:
+    command:
+        default:
+        circuitBreaker:
+            requestVolumeThreshold: 10
+            errorThresholdPercentage: 5 # 50%
+            sleepWindowInMilliseconds: 50000 # 5s
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8383/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+
+
+bank:
+  link: http://localhost:8081/pagamentos

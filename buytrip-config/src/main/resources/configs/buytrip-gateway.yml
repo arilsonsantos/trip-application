@@ -1,0 +1,28 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8383/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+
+
+zuul:
+  semaphore:
+    max-semaphores: 2000
+  host:
+    connect-timeout-millis: 2000  
+  routes:
+    index:
+      sensitive-headers:
+      service-id: buytrip
+      path: /comprar/**
+    status:
+      sensitive-headers:
+      service-id: buytrip-feedback
+      path: /status/**
+
+feign:
+  hystrix:
+    enabled: true

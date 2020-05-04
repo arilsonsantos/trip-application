@@ -1,0 +1,22 @@
+@host = http://localhost:8585
+
+###
+
+{{host}}/buytripinfo
+
+###
+
+POST {{host}}/comprar
+Content-Type: application/json
+
+{
+    "codigoPassagem":11,
+    "numeroCartao": 12345678,
+    "codigoSeguranca":90,
+    "valorPassagem":50
+}
+
+###
+@chave = 78543086-21c7-4410-b04d-1779c51842db
+
+{{host}}/status/{{chave}}

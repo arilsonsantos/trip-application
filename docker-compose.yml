@@ -1,0 +1,49 @@
+version: '3.7'
+
+volumes: 
+  # mysql:
+  rabbitmq:
+  redis:
+
+services:
+  # db:
+  #   container_name: mysql
+  #   image: mysql:8
+  #   hostname: host_mysql
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - ./data/mysql:/var/lib/mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=123
+  #     - MYSQL_DATABASE=banco
+  #   cap_add:
+  #     - SYS_NICE # remove these prints -> mbind: Operation not permitted
+
+  rabbitmq:
+    container_name: rabbitmq-buytrip
+    hostname: host_rabbitmq
+    image: rabbitmq:3.8.3-management-alpine
+    volumes:
+      # - ./data/rabbitmq:/var/lib/rabbitmq/mnesia
+      - ./scripts/definitions.json:/etc/rabbitmq/definitions.json
+
+    #command: bash -c "/opt/rabbitmq/sbin/rabbitmqctl add_user guest guest"
+
+    ports:
+      - "8700:15672"
+      - "5671:5671"
+      - "5672:5672" 
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: 123
+      # RABBITMQ_DEFAULT_VHOST: my_virtual_host
+
+
+  redis:
+    image: redis:5.0.8-alpine
+    container_name: redis
+    volumes:
+      - ./data/redis:/data
+    ports:
+      - "6379:6379"

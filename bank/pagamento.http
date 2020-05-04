@@ -1,0 +1,16 @@
+@host = http://localhost:8081/pagamentos
+
+###
+
+{{host}}
+
+###
+
+POST {{host}}
+Content-Type: application/json
+
+{
+    "numeroCartao": 12345678,
+    "codigoSeguranca":90,
+    "valorCompra":500
+}

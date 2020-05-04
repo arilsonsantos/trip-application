@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "8180",
+            "request": "launch",
+            "mainClass": "br.com.orion.buytrip.BuyTripApplication",
+            "projectName": "buytrip",
+            "vmArgs": "-Dserver.port=8180"
+        },
+        {
+            "type": "java",
+            "name": "8181",
+            "request": "launch",
+            "mainClass": "br.com.orion.buytrip.BuyTripApplication",
+            "projectName": "buytrip",
+            "vmArgs": "-Dserver.port=8181"
+        }
+    ]
+}

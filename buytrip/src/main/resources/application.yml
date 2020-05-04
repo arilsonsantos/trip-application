@@ -1,0 +1,16 @@
+server:
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: buytrip
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: error
+
+
