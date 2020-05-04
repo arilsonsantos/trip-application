@@ -4,7 +4,10 @@ on:
   
   push:
     branches-ignore: [master]
-  # pull_request:
+  pull_request:
+    branches:
+    types:
+      - labeled
   #   branches: [master]
   #   types: [opened, synchronize, closed]
 #     types:
@@ -54,21 +57,41 @@ jobs:
         pr_label: "Tested"
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  automerge:
-    needs: [ pull-request]
-    if: github.base_ref == 'master'
+  merge-branch:
+    needs: [ pull-request ]
     runs-on: ubuntu-latest
     steps:
-      - name: AUTOMERGE
-        uses: actions/github-script@0.2.0
+      - uses: actions/checkout@master
+      - name: Merge by labeled
+        uses: devmasx/merge-branch@v1.1.0
         with:
-          script: |
-            github.pullRequests.merge({
-              owner: context.payload.repository.owner.login,
-              repo: context.payload.repository.name,
-              pull_number: context.payload.pull_request.number
-            })
-          github-token: "${{ github.token }}"        
+          label_name: 'Tested'
+          target_branch: 'master'
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  # automerge:
+  #   needs: [ pull-request ]
+  #   # if: github.base_ref == 'master'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: checkout 
+  #     uses: actions/checkout@v2
+  #     with:
+  #       ref: master
+  #   - name: AUTOMERGE
+  #     uses: actions/github-script@0.2.0
+  #     with:
+  #       script: |
+  #         github.pullRequests.merge({
+  #           owner: context.payload.repository.owner.login,
+  #           repo: context.payload.repository.name,
+  #           pull_number: context.payload.pull_request.number
+  #         })
+  #       github-token: "${{ github.token }}"     
+        
+        
+
   # automerge:
     # needs: [ pull-request ]
     # runs-on: ubuntu-latest
