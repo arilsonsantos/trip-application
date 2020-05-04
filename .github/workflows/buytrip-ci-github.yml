@@ -60,7 +60,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: AUTOMERGE
-        uses: actions/github-script@0.2.0
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - uses: actions/github-script@0.2.0
         with:
           script: |
             github.pullRequests.merge({
