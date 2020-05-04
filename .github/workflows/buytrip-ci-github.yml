@@ -4,8 +4,8 @@ on:
   
   push:
     branches-ignore: [master, homolog]
-#   pull_request:
-#     branches: [homolog]
+    pull_request:
+      branches: [homolog]
 #     types:
 #       - labeled
 #       - unlabeled
@@ -53,14 +53,15 @@ jobs:
 
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-#   automerge:
-#     needs: [ pull-request ]
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: automerge no buytrip-ci-github
-#         uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
-#         env:
-#           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-#           MERGE_LABELS: "Tested"
-#           MERGE_RETRIES: "6"
-#           MERGE_RETRY_SLEEP: "10000"
+  automerge:
+    needs: [ pull-request ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: automerge no buytrip-ci-github
+        uses: actions/checkout@homolog
+        uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "Tested"
+          MERGE_RETRIES: "6"
+          MERGE_RETRY_SLEEP: "10000"
