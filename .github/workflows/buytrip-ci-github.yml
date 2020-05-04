@@ -6,6 +6,7 @@ on:
     branches-ignore: [master, homolog]
     pull_request:
       branches: [homolog]
+      types: [opened, synchronize, closed]
 #     types:
 #       - labeled
 #       - unlabeled
@@ -38,6 +39,7 @@ jobs:
       # run: mvn -B clean package --file pom.xml
       run: mvn -version
 
+
   pull-request:
     needs: [ build ]
     runs-on: ubuntu-latest
@@ -52,9 +54,19 @@ jobs:
         pr_label: ""
 
         github_token: ${{ secrets.GITHUB_TOKEN }}
-  
+
+  muda_para_homolog:
+    needs:
+      - pull_request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 
+      with:
+        ref: homolog
+
   automerge:
-    needs: [ checkout_before_merge ]
+    needs: 
+      - muda_para_homolog
     runs-on: ubuntu-latest
     steps:
       - name: automerge no buytrip-ci-github
