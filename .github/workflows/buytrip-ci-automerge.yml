@@ -1,35 +1,4 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@arilsonsantos 
-Learn Git and GitHub without any code!
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-
-
-arilsonsantos
-/
-trip-application
-Private
-1
-00
- Code
- Issues 0
- Pull requests 1 Actions
- Projects 0
- Security 0
- Insights
- Settings
-trip-application/.github/workflows/buytrip-ci-github.yml
-@arilsonsantos arilsonsantos Update buytrip-ci-github.yml
-88a8133 4 minutes ago
-66 lines (58 sloc)  1.45 KB
-  
-name: BuyTrip CI
+name: BuyTrip CI Automerge
 
 on:
   
@@ -69,23 +38,23 @@ jobs:
       # run: mvn -B clean package --file pom.xml
       run: mvn -version
 
-  pull-request:
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: pull-request to homolog
-      uses: repo-sync/pull-request@v2
-      with:
-        source_branch: ""                                  
-        destination_branch: "homolog"                      
-        pr_title: "Pulling ${{ github.ref }} into homolog" 
-        pr_label: "Tested"
+#   pull-request:
+#     needs: [ build ]
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: pull-request to homolog
+#       uses: repo-sync/pull-request@v2
+#       with:
+#         source_branch: ""                                  
+#         destination_branch: "homolog"                      
+#         pr_title: "Pulling ${{ github.ref }} into homolog" 
+#         pr_label: "Tested"
 
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
 
   automerge:
-    needs: [ pull-request ]
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - name: automerge no buytrip-ci-github
@@ -95,15 +64,3 @@ jobs:
           MERGE_LABELS: "Tested"
           MERGE_RETRIES: "6"
           MERGE_RETRY_SLEEP: "10000"
-© 2020 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
