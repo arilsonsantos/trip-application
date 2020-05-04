@@ -2,6 +2,8 @@ name: BuyTrip CI Automerge
 
 on:
 
+  push:
+    branches: [master]
   pull_request:
     branches: [master]
     types: [opened, synchronize, closed]
@@ -17,7 +19,7 @@ jobs:
   automerge:
     if: github.base_ref == 'master'
     steps:
-      - name: automerge no AUTOMERGE
+      - name: AUTOMERGE
         uses: actions/github-script@0.2.0
         with:
           script: |
