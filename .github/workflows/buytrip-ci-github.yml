@@ -41,7 +41,7 @@ jobs:
   automerge:
     needs: [pull-request]
     runs-on: ubuntu-latest
-    if: github.base_ref == 'homolog'
+    # if: github.base_ref == 'homolog'
     steps:
       - name: automerge no buytrip-ci-automerge
         uses: actions/github-script@0.20
