@@ -27,7 +27,6 @@ jobs:
             github.pullRequests.merge({
               owner: context.payload.repository.owner.login,
               repo: context.payload.repository.name
-              pull_number: context.payload.pyll_request.number
             })
           github-token: "${{ github.token }}"
         # uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
