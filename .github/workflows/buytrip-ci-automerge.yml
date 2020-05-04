@@ -1,7 +1,9 @@
 name: BuyTrip CI Automerge
 
 on:
-  
+  push: 
+    branches: 
+      - x
   pull_request:
     branches: [homolog]
     types:
