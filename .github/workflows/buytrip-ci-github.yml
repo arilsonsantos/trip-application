@@ -55,8 +55,6 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
   automerge:
-    needs: 
-      - pull_request
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
