@@ -4,9 +4,24 @@ on:
   
   push:
     branches-ignore: [master, homolog]
-  pull_request:
-    branches: 
-      - homolog
+    pull_request:
+      branches: [homolog]
+#     types:
+#       - labeled
+#       - unlabeled
+#       - synchronize
+#       - opened
+#       - edited
+#       - ready_for_review
+#       - reopened
+#       - unlocked
+#   pull_request_review:
+#     types:
+#       - submitted
+#   check_suite:
+#     types:
+#       - completed
+#   status: {}
 
 jobs:
   build:
@@ -39,17 +54,14 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
   automerge:
-    needs: [pull-request]
+    needs: [ pull-request ]
     runs-on: ubuntu-latest
-    # if: github.base_ref == 'homolog'
     steps:
-      - name: automerge no buytrip-ci-automerge
-        uses: actions/github-script@0.20
-        with:
-          script: |
-            github.pullRequests.merge({
-              owner: context.payload.repository.owner.login,
-              repo: context.payload.repository.name,
-              pull_number: context.payload.pull_request.number
-            })
-          github-token: ${{github.token}}
+      - name: automerge no buytrip-ci-github
+        uses: actions/checkout@homolog
+        uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "Tested"
+          MERGE_RETRIES: "6"
+          MERGE_RETRY_SLEEP: "10000"
