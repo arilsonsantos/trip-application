@@ -62,21 +62,22 @@ jobs:
         pr_label: "Tested"
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  merge-branch:
-    needs: [ pull-request ]
+  autoMerge:
+    needs: [ pull-request]
     runs-on: ubuntu-latest
     steps:
-    - name: Inspect MERGE-BRANCH
-      run: |
-        echo This workflow on ${{ github.repository }} was started by ${{ github.actor }} 
-    - uses: actions/checkout@master
-    - name: Merge by labeled
-      uses: devmasx/merge-branch@v1.1.0
-      with:
-        label_name: 'Tested'
-        target_branch: 'master'
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: automerge
+        uses: buildsville/simple-merge@v1
+        id: merge
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          method: 'squash'
+          labels: 'Tested'
+          title: github.base_ref
+          message: "Mensagem ${{ github.base_ref }}"
+      - name: result
+        run: |
+          echo "result: ${{ steps.merge.outputs.result }}"
 
   # automerge:
   #   needs: [ pull-request ]
