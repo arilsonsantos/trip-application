@@ -4,10 +4,12 @@
 name: Buytrip CI Automerge
 
 on:
+  
   pull_request:
     branches: [ homolog ]
 
 jobs:
+    
   build:
 
     runs-on: ubuntu-latest
@@ -20,3 +22,14 @@ jobs:
         java-version: 1.11
     - name: Build with Maven on pull request
       run: mvn -B package --file pom.xml
+      
+  automerge:
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: automerge no buytrip-ci-github
+        uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "Tested"
+          MERGE_RETRY_SLEEP: "10000"
