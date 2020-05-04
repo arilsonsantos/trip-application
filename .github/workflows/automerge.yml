@@ -1,9 +1,6 @@
-name: BuyTrip CI Automerge
-
+name: automerge
 on:
-
   pull_request:
-    branches: [ homolog ]
     types:
       - labeled
       - unlabeled
@@ -20,15 +17,11 @@ on:
     types:
       - completed
   status: {}
-
 jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: automerge by BuyTrip CI Automerge
+      - name: automerge
         uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: ""
-          MERGE_RETRIES: "6"
-          MERGE_RETRY_SLEEP: "10000"
