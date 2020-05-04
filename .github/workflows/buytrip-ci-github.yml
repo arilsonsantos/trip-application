@@ -3,9 +3,9 @@ name: BuyTrip CI
 on:
   
   push:
-    branches-ignore: [master]
+    branches-ignore: [ master ]
   pull_request:
-    branches:
+    branches: [ master ]
     types:
       - labeled
   #   branches: [master]
@@ -29,13 +29,12 @@ on:
 
 jobs:
   build:
-
+    name: Inspect context
     runs-on: ubuntu-latest
-
     steps:
-      - name: Inspect BUILD
-        run: |
-          echo This workflow on ${{ github.repository }} was started by ${{ github.actor }} 
+    - name: Inspect context
+      run: |
+          echo This workflow on ${{ github.repository }} was started by ${{ github.actor }}
     - uses: actions/checkout@v2
     - name: Set up JDK 11
       uses: actions/setup-java@v1
@@ -67,17 +66,17 @@ jobs:
     needs: [ pull-request ]
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect MERGE-BRANCH
-        run: |
-          echo This workflow on ${{ github.repository }} was started by ${{ github.actor }} 
-      - uses: actions/checkout@master
-      - name: Merge by labeled
-        uses: devmasx/merge-branch@v1.1.0
-        with:
-          label_name: 'Tested'
-          target_branch: 'master'
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: Inspect MERGE-BRANCH
+      run: |
+        echo This workflow on ${{ github.repository }} was started by ${{ github.actor }} 
+    - uses: actions/checkout@master
+    - name: Merge by labeled
+      uses: devmasx/merge-branch@v1.1.0
+      with:
+        label_name: 'Tested'
+        target_branch: 'master'
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   # automerge:
   #   needs: [ pull-request ]
