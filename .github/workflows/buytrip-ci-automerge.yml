@@ -18,6 +18,7 @@ on:
 jobs:
   automerge:
     if: github.base_ref == 'master'
+    runs-on: ubuntu-latest
     steps:
       - name: AUTOMERGE
         uses: actions/github-script@0.2.0
