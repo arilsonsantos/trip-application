@@ -5,15 +5,32 @@ on:
   pull_request:
     branches: [master]
     types: [opened, synchronize, closed]
+  pull_request_review:
+    types:
+      - submitted
+  check_suite:
+    types:
+      - completed
+  status: {}
 
 jobs:
   automerge:
     runs-on: ubuntu-latest
+    if: github.base_ref == 'master'
     steps:
-      - name: automerge no buytrip-ci-github
-        uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: "Tested"
-          MERGE_RETRIES: "6"
-          MERGE_RETRY_SLEEP: "10000"
+      - name: automerge no AUTOMERGE
+      uses: actions/github-script@0.2.0
+      with:
+        script: |
+          github.pullRequests.merge({
+            owner: context.payload.repository.owner.login,
+            repo: context.payload.repository.name,
+            pull_number: context.payload.pyll_request.number
+          })
+        github-token: "${{ github.token }}"
+        # uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
+        # env:
+        #   GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        #   MERGE_LABELS: "Tested"
+        #   MERGE_RETRIES: "3"
+        #   MERGE_RETRY_SLEEP: "10000"
