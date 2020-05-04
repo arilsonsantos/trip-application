@@ -53,14 +53,6 @@ jobs:
 
         github_token: ${{ secrets.GITHUB_TOKEN }}
   
-  checkout_before_merge:
-    needs: [ pull-request ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      with:
-        ref: homolog
-
   automerge:
     needs: [ checkout_before_merge ]
     runs-on: ubuntu-latest
