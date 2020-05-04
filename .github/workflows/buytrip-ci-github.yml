@@ -59,19 +59,19 @@ jobs:
     # if: github.base_ref == 'master'
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v2
-      #   with:
-      #     ref: master
+    - uses: actions/checkout@v2
+      with:
+        ref: master
       - name: AUTOMERGE
       - uses: actions/github-script@0.2.0
-        with:
-          script: |
-            github.pullRequests.merge({
-              owner: context.payload.repository.owner.login,
-              repo: context.payload.repository.name,
-              pull_number: context.payload.pull_request.number
-            })
-          github-token: "${{ github.token }}"        
+      with:
+        script: |
+          github.pullRequests.merge({
+            owner: context.payload.repository.owner.login,
+            repo: context.payload.repository.name,
+            pull_number: context.payload.pull_request.number
+          })
+        github-token: "${{ github.token }}"        
   # automerge:
     # needs: [ pull-request ]
     # runs-on: ubuntu-latest
