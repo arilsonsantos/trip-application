@@ -52,13 +52,19 @@ jobs:
         pr_label: ""
 
         github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  automerge:
+  
+  checkout_before_merge:
     needs: [ pull-request ]
     runs-on: ubuntu-latest
     steps:
-      - name: automerge no buytrip-ci-github
+      - name: Checkout to HOMOLOG
         uses: actions/checkout@homolog
+        
+  automerge:
+    needs: [ checkout_before_merge ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: automerge no buytrip-ci-github
         uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
