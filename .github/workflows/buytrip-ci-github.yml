@@ -49,7 +49,7 @@ jobs:
         source_branch: ""                                  
         destination_branch: "homolog"                      
         pr_title: "Pulling ${{ github.ref }} into homolog" 
-        pr_label: ""
+        pr_label: "Tested"
 
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
