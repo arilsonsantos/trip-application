@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: 
       - homolog
-        - 
+
 jobs:
   build:
 
