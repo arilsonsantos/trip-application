@@ -57,9 +57,10 @@ jobs:
 
   automerge:
     needs: 
-      - muda_para_homolog
+      - pull_request
     runs-on: ubuntu-latest
     steps:
+      - name: Tentando fazer checkout para homolog
       - uses: actions/checkout@v2 
       with:
         ref: homolog
