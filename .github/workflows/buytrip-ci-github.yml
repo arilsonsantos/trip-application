@@ -4,25 +4,10 @@ on:
   
   push:
     branches-ignore: [master, homolog]
-#   pull_request:
-#     branches: [homolog]
-#     types:
-#       - labeled
-#       - unlabeled
-#       - synchronize
-#       - opened
-#       - edited
-#       - ready_for_review
-#       - reopened
-#       - unlocked
-#   pull_request_review:
-#     types:
-#       - submitted
-#   check_suite:
-#     types:
-#       - completed
-#   status: {}
-
+  pull_request:
+    branches: 
+      - homolog
+        - 
 jobs:
   build:
 
