@@ -59,11 +59,12 @@ jobs:
     # if: github.base_ref == 'master'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - checkout 
+      uses: actions/checkout@v2
       with:
         ref: master
     - name: AUTOMERGE
-    - uses: actions/github-script@0.2.0
+      uses: actions/github-script@0.2.0
       with:
         script: |
           github.pullRequests.merge({
