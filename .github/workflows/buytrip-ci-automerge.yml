@@ -3,9 +3,9 @@ name: BuyTrip CI Automerge
 on:
 
   push:
-    branches: [master]
+    branches: [masxxxter]
   pull_request:
-    branches: [master]
+    branches: [maxxxster]
     types: [opened, synchronize, closed]
   pull_request_review:
     types:
