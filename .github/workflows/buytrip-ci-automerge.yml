@@ -3,8 +3,8 @@ name: BuyTrip CI Automerge
 on:
 
   pull_request:
-    branches:
-      - master
+    branches: [master]
+    types: [opened, synchronize, closed]
 
 jobs:
   automerge:
