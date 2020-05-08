@@ -88,12 +88,8 @@
 					<testFramework>JUNIT5</testFramework>
 					<baseClassMappings>
 						<baseClassMapping>
-							<contractPackageRegex>.*pagamento.ok</contractPackageRegex>
-							<baseClassFQN>br.com.orion.bank.contracts.pagamento.ok.PagamentoControllerOk</baseClassFQN>
-						</baseClassMapping>
-						<baseClassMapping>
-							<contractPackageRegex>.*pagamento.exceptions</contractPackageRegex>
-							<baseClassFQN>br.com.orion.bank.contracts.pagamento.exceptions.PagamentoControllerExceptionTest</baseClassFQN>
+							<contractPackageRegex>.*pagamento</contractPackageRegex>
+							<baseClassFQN>br.com.orion.bank.contracts.pagamento.PagamentoControllerBaseTest</baseClassFQN>
 						</baseClassMapping>
 					</baseClassMappings>
 				</configuration>

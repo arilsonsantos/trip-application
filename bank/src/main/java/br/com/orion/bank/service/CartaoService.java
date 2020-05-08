@@ -31,7 +31,6 @@ public class CartaoService {
     public boolean isSaldoSuficiente(Integer numeroCartao, Integer codigoSeguranca,
             BigDecimal valorCompra) {
                 
-        getCartao(numeroCartao, codigoSeguranca);
         Cartao cartao = getCartao(numeroCartao, codigoSeguranca);
         return cartao.getValorCredito().compareTo(valorCompra) >= 0 ? true : false;
     }

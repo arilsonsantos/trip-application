@@ -2,39 +2,40 @@ import org.springframework.cloud.contract.spec.Contract
 
 [
     Contract.make {
-        name("PagamentoSemSaldoNotAcceptable")
+        name("PagamentoOk")
         request {
             method 'POST'
             url("/pagamentos")
-            headers {
-                contentType applicationJsonUtf8()
-            }
-
-            body([
-                "numeroCartao": 12345678,
-                "codigoSeguranca":90,
-                "valorCompra":100
-            ])
-        }
-
-        response {
-            status NOT_ACCEPTABLE()
             headers {
                 contentType applicationJson()
             }
 
             body([
-                "mensagem": "Não há saldo suficiente"
+                "numeroCartao": 12345678,
+                "codigoSeguranca":90,
+                "valorCompra":50,
+            ])
+            
+        }
+
+        response {
+            status OK()
+            headers {
+                contentType applicationJson()
+            }
+
+            body([
+                "mensagem": "Pagamento registrado com sucesso"
             ])
         }
     },
-        Contract.make {
+    Contract.make {
         name("PagamentoCartaoInvalidoBadRequest")
         request {
             method 'POST'
             url("/pagamentos")
             headers {
-                contentType applicationJsonUtf8()
+                contentType applicationJson()
             }
 
             body([
@@ -55,50 +56,45 @@ import org.springframework.cloud.contract.spec.Contract
             ])
         }
     },
-
-        Contract.make {
-        name("PagamentoJsonInvalidoSemNumerocartaoBadRequest")
+    Contract.make {
+        name("PagamentoSemSaldoNotAcceptable")
         request {
             method 'POST'
             url("/pagamentos")
-            headers {
-                contentType applicationJsonUtf8()
-            }
-
-            body([
-                "codigoSeguranca":90,
-                "valorCompra":10
-            ])
-        }
-
-        response {
-            status BAD_REQUEST()
             headers {
                 contentType applicationJson()
             }
 
             body([
-                mensagem: "Argumentos inválidos",
-                erros: [
-                    numeroCartao: "Número do cartão não pode ser nulo"
-                ]
+                "numeroCartao": 12345678,
+                "codigoSeguranca":90,
+                "valorCompra":100
             ])
         }
 
-    },
+        response {
+            status NOT_ACCEPTABLE()
+            headers {
+                contentType applicationJson()
+            }
 
-        Contract.make {
+            body([
+                "mensagem": "Não há saldo suficiente"
+            ])
+        }
+    },
+      Contract.make {
         name("PagamentoJsonInvalidoSemCodigoSegurancaBadRequest")
         request {
             method 'POST'
             url("/pagamentos")
             headers {
-                contentType applicationJsonUtf8()
+                contentType applicationJson()
             }
 
             body([
-                "numeroCartao": 123,
-                "valorCompra":10
+                "codigoSeguranca":90,
+                "valorCompra":100
             ])
         }
 
@@ -109,12 +105,12 @@ import org.springframework.cloud.contract.spec.Contract
             }
 
             body([
-                mensagem: "Argumentos inválidos",
-                erros: [
-                    codigoSeguranca: "Código de segurança não pode ser nulo"
+                "mensagem": "Argumentos inválidos",
+                "erros": [
+                    "numeroCartao": "Número do cartão não pode ser nulo"
                 ]
             ])
         }
+      }
 
-    }
 ]
