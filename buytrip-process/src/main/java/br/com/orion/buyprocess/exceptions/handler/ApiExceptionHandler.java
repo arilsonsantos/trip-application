@@ -41,7 +41,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(fe -> errors.put(fe.getField(), fe.getDefaultMessage()));
-        RetornoDto retorno = RetornoDto.builder().mensagem("Invalid arguement(s)").errors(errors).build();
+        RetornoDto retorno = RetornoDto.builder().mensagem("Invalid arguement(s)").erros(errors).build();
 
         return new ResponseEntity<>(retorno, HttpStatus.BAD_REQUEST);
     }

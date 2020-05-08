@@ -21,6 +21,6 @@ public class RetornoDto {
 	
 	private String mensagem;
 	private String chavePesquisa;
-	private Map<String, String> errors;
+	private Map<String, String> erros;
 
 }
