@@ -48,12 +48,11 @@ public class PagamentoRestClientWiremockTest {
         headers.setAcceptCharset(charsetUtf8);
         HttpEntity<PagamentoJson> entity = new HttpEntity<PagamentoJson>(json, headers);
 
-        ResponseEntity<RetornoDto> retorno = restTemplate
-                .postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
+        ResponseEntity<RetornoDto> retorno =
+                restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
 
         Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(200);
-        Assertions.assertThat(retorno.getBody().getMensagem())
-                .isEqualTo("Pagamento registrado com sucesso");
+        Assertions.assertThat(retorno.getBody().getMensagem()).isEqualTo("Pagamento registrado com sucesso");
     }
 
 
@@ -72,13 +71,11 @@ public class PagamentoRestClientWiremockTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<PagamentoJson> entity = new HttpEntity<PagamentoJson>(json, headers);
 
-        ResponseEntity<RetornoDto> retorno = restTemplate
-                .postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
+        ResponseEntity<RetornoDto> retorno =
+                restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
 
         Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(406);
         Assertions.assertThat(retorno.getBody().getMensagem()).isEqualTo("Não há saldo suficiente");
-        //  Assertions.assertThat(retorno.getBody()).fi
-        // assertThatJson(parsedJson).field("['mensagem']").isEqualTo("Cart\u00E3o inv\u00E1lido");
     }
 
     @Test
@@ -95,8 +92,8 @@ public class PagamentoRestClientWiremockTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<PagamentoJson> entity = new HttpEntity<PagamentoJson>(json, headers);
 
-        ResponseEntity<RetornoDto> retorno = restTemplate
-                .postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
+        ResponseEntity<RetornoDto> retorno =
+                restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
 
         Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(406);
         Assertions.assertThat(retorno.getBody().getMensagem()).isEqualTo("Cartão inválido");
@@ -116,8 +113,8 @@ public class PagamentoRestClientWiremockTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<PagamentoJson> entity = new HttpEntity<PagamentoJson>(json, headers);
 
-        ResponseEntity<RetornoDto> retorno = restTemplate
-                .postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
+        ResponseEntity<RetornoDto> retorno =
+                restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
 
         Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(400);
         Assertions.assertThat(retorno.getBody().getMensagem()).isEqualTo("Argumentos inválidos");
