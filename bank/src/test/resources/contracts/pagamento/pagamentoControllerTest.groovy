@@ -2,7 +2,7 @@ import org.springframework.cloud.contract.spec.Contract
 
 [
     Contract.make {
-        name("PagamentoOk")
+        name("pagamento com sucesso")
         request {
             method 'POST'
             url("/pagamentos")
@@ -30,7 +30,7 @@ import org.springframework.cloud.contract.spec.Contract
         }
     },
     Contract.make {
-        name("PagamentoCartaoInvalidoBadRequest")
+        name("numero do cartao invalido")
         request {
             method 'POST'
             url("/pagamentos")
@@ -57,7 +57,7 @@ import org.springframework.cloud.contract.spec.Contract
         }
     },
     Contract.make {
-        name("PagamentoSemSaldoNotAcceptable")
+        name("sem saldo suficiente")
         request {
             method 'POST'
             url("/pagamentos")
@@ -84,7 +84,7 @@ import org.springframework.cloud.contract.spec.Contract
         }
     },
       Contract.make {
-        name("PagamentoJsonInvalidoSemCodigoSegurancaBadRequest")
+        name("numero do cartao nulo")
         request {
             method 'POST'
             url("/pagamentos")
