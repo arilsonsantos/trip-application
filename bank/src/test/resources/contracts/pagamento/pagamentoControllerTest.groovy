@@ -94,7 +94,7 @@ import org.springframework.cloud.contract.spec.Contract
 
             body([
                 "codigoSeguranca":90,
-                "valorCompra":100
+                "valorCompra":20
             ])
         }
 
@@ -108,6 +108,35 @@ import org.springframework.cloud.contract.spec.Contract
                 "mensagem": "Argumentos inválidos",
                 "erros": [
                     "numeroCartao": "Número do cartão não pode ser nulo"
+                ]
+            ])
+        }
+      },
+      Contract.make {
+        name("codigo de seguranca nulo")
+        request {
+            method 'POST'
+            url("/pagamentos")
+            headers {
+                contentType applicationJson()
+            }
+
+            body([
+                "numeroCartao": 12345678,
+                "valorCompra":20
+            ])
+        }
+
+        response {
+            status BAD_REQUEST()
+            headers {
+                contentType applicationJson()
+            }
+
+            body([
+                "mensagem": "Argumentos inválidos",
+                "erros": [
+                    "codigoSeguranca": "Código de segurança não pode ser nulo"
                 ]
             ])
         }
