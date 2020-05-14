@@ -3,10 +3,10 @@ name: BuyTrip CI
 on:
   
   push:
-    branches-ignore: [ master ]
-  pull_request:
     branches: [ master ]
-    types:
+  # pull_request:
+  #   branches: [ master ]
+  #   types:
       - labeled
   #   branches: [master]
   #   types: [opened, synchronize, closed]
@@ -41,42 +41,41 @@ jobs:
       with:
         java-version: 1.11
     - name: Maven Package
-      # run: mvn -B clean package --file pom.xml
-      run: mvn -version
+      run: mvn -B clean package --file pom.xml
 
 
-  pull-request:
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Inspect PULL-REQUEST
-      run: |
-        echo This workflow on ${{ github.repository }} was started by ${{ github.actor }}    
-    - uses: actions/checkout@v2
-    - name: pull-request to master
-      uses: repo-sync/pull-request@v2
-      with:
-        source_branch: ""                                  
-        destination_branch: "master"                      
-        pr_title: "Pulling ${{ github.ref }} into master" 
-        pr_label: "Tested"
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+  # pull-request:
+  #   needs: [ build ]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Inspect PULL-REQUEST
+  #     run: |
+  #       echo This workflow on ${{ github.repository }} was started by ${{ github.actor }}    
+  #   - uses: actions/checkout@v2
+  #   - name: pull-request to master
+  #     uses: repo-sync/pull-request@v2
+  #     with:
+  #       source_branch: ""                                  
+  #       destination_branch: "master"                      
+  #       pr_title: "Pulling ${{ github.ref }} into master" 
+  #       pr_label: "Tested"
+  #       github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  merge-branch:
-    needs: [ pull-request ]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Inspect MERGE-BRANCH
-      run: |
-        echo This workflow on ${{ github.repository }} was started by ${{ github.actor }} 
-    - uses: actions/checkout@master
-    - name: Merge by labeled
-      uses: devmasx/merge-branch@v1.1.0
-      with:
-        label_name: 'Tested'
-        target_branch: 'master'
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  # merge-branch:
+  #   needs: [ pull-request ]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Inspect MERGE-BRANCH
+  #     run: |
+  #       echo This workflow on ${{ github.repository }} was started by ${{ github.actor }} 
+  #   - uses: actions/checkout@master
+  #   - name: Merge by labeled
+  #     uses: devmasx/merge-branch@v1.1.0
+  #     with:
+  #       label_name: 'Tested'
+  #       target_branch: 'master'
+  #     env:
+  #       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   # automerge:
   #   needs: [ pull-request ]

@@ -33,7 +33,7 @@ public class PagamentoRestClientWiremockTest {
 
 
     @Test
-    public void pagamentoReturn200() {
+    public void validate_pagamento_com_sucesso() {
         RestTemplate restTemplate = new RestTemplate();
 
         PagamentoJson json = new PagamentoJson();
@@ -58,7 +58,7 @@ public class PagamentoRestClientWiremockTest {
 
 
     @Test
-    public void saldoInsuficiente() {
+    public void validate_sem_saldo_suficiente() {
         TestRestTemplate restTemplate = new TestRestTemplate();
 
         PagamentoJson json = new PagamentoJson();
@@ -79,7 +79,7 @@ public class PagamentoRestClientWiremockTest {
     }
 
     @Test
-    public void cartaoInvalido() {
+    public void validate_numero_do_cartao_invalido() {
         TestRestTemplate restTemplate = new TestRestTemplate();
 
         PagamentoJson json = new PagamentoJson();
@@ -100,13 +100,34 @@ public class PagamentoRestClientWiremockTest {
     }
 
     @Test
-    public void cartaoNulo() {
+    public void validate_numero_do_cartao_nulo() {
         TestRestTemplate restTemplate = new TestRestTemplate();
 
         PagamentoJson json = new PagamentoJson();
         json.setNumeroCartao(null);
         json.setCodigoSeguranca(90);
-        json.setValorCompra(new BigDecimal(100));
+        json.setValorCompra(new BigDecimal(20));
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<PagamentoJson> entity = new HttpEntity<PagamentoJson>(json, headers);
+
+        ResponseEntity<RetornoDto> retorno =
+                restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
+
+        Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(400);
+        Assertions.assertThat(retorno.getBody().getMensagem()).isEqualTo("Argumentos inválidos");
+    }
+
+    @Test
+    public void validate_codigo_de_seguranca_nulo() {
+        TestRestTemplate restTemplate = new TestRestTemplate();
+
+        PagamentoJson json = new PagamentoJson();
+        json.setNumeroCartao(12345678);
+        json.setCodigoSeguranca(null);
+        json.setValorCompra(new BigDecimal(20));
 
         HttpHeaders headers = new HttpHeaders();
 
