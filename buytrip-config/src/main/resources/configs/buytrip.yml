@@ -1,4 +1,11 @@
 spring:
+  devtools:
+    livereload:
+      port: 38080
+      add-properties: false
+  main:
+    lazy-initialization: true
+    banner-mode: off
   profiles: dev
   cloud:
     loadbalancer:
@@ -24,6 +31,13 @@ spring:
 ---
 
 spring:
+  devtools:
+    livereload:
+      port: 38080
+      add-properties: false
+  main:
+    lazy-initialization: true
+    banner-mode: off
   profiles: prod
   cloud:
     loadbalancer:

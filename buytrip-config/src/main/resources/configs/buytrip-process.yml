@@ -1,4 +1,11 @@
 spring:
+  devtools:
+    livereload:
+      port: 38083
+      add-properties: false
+  main:
+    lazy-initialization: true
+    banner-mode: off
   cloud:
     stream:
       bindings:

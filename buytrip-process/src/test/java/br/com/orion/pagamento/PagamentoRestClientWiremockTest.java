@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
+
 import br.com.orion.buyprocess.dto.PagamentoJson;
 import br.com.orion.buyprocess.dto.RetornoDto;
 
@@ -40,7 +42,7 @@ public class PagamentoRestClientWiremockTest {
         json.setNumeroCartao(12345678);
         json.setCodigoSeguranca(90);
         json.setValorCompra(new BigDecimal(50));
-
+        
         HttpHeaders headers = new HttpHeaders();
         List<Charset> charsetUtf8 = Collections.singletonList(StandardCharsets.UTF_8);
 
