@@ -1,3 +1,12 @@
+spring:
+  devtools:
+    livereload:
+      port: 38084
+      add-properties: false
+  main:
+    lazy-initialization: true
+    banner-mode: off
+
 eureka:
   instance:
     hostname: localhost

@@ -5,7 +5,8 @@
             "type": "java",
             "request": "launch",
             "mainClass": "br.com.orion.bank.BankApplication",
-            "projectName": "bank"
+            "projectName": "bank",
+            "vmArgs":"-noverify"
         },
         {
             "name": "ByTripSeriveDiscovery",
