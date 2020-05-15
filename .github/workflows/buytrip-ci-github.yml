@@ -3,7 +3,7 @@ name: BuyTrip CI
 on:
   
   push:
-    branches: [ develop ]
+    branches-ignore: [ master ]
 
 jobs:
   build:
