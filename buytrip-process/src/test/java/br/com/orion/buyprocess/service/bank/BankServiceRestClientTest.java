@@ -32,7 +32,8 @@ import br.com.orion.buyprocess.dto.RetornoDto;
 @TestInstance(Lifecycle.PER_CLASS)
 @ExtendWith(SpringExtension.class)
 @AutoConfigureStubRunner(ids = "br.com.orion:bank:+:9995", stubsMode = StubsMode.LOCAL)
-public class PagamentoRestClientWiremockTest {
+
+public class BankServiceRestClientTest {
 
     private static final String PAGAMENTOS_API = "http://localhost:9995/pagamentos";
 
