@@ -1,4 +1,4 @@
-package br.com.orion.pagamento;
+package br.com.orion.buyprocess.service.bank;
 
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
@@ -7,7 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.cloud.contract.stubrunner.server.EnableStubRunnerServer;
@@ -19,25 +22,29 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.web.client.RestTemplate;
 
 import br.com.orion.buyprocess.dto.PagamentoJson;
 import br.com.orion.buyprocess.dto.RetornoDto;
 
 
+@DirtiesContext
 @EnableStubRunnerServer
+@TestInstance(Lifecycle.PER_CLASS)
 @ExtendWith(SpringExtension.class)
 @AutoConfigureStubRunner(ids = "br.com.orion:bank:+:9995", stubsMode = StubsMode.LOCAL)
-@DirtiesContext
 public class PagamentoRestClientWiremockTest {
 
     private static final String PAGAMENTOS_API = "http://localhost:9995/pagamentos";
 
+    TestRestTemplate restTemplate;
+
+    @BeforeAll
+    public void setUp(){
+        restTemplate = new TestRestTemplate();
+    }
 
     @Test
     public void validate_pagamento_com_sucesso() {
-        RestTemplate restTemplate = new RestTemplate();
-
         PagamentoJson json = new PagamentoJson();
         json.setNumeroCartao(12345678);
         json.setCodigoSeguranca(90);
@@ -61,8 +68,6 @@ public class PagamentoRestClientWiremockTest {
 
     @Test
     public void validate_sem_saldo_suficiente() {
-        TestRestTemplate restTemplate = new TestRestTemplate();
-
         PagamentoJson json = new PagamentoJson();
         json.setNumeroCartao(12345678);
         json.setCodigoSeguranca(90);
@@ -82,8 +87,6 @@ public class PagamentoRestClientWiremockTest {
 
     @Test
     public void validate_numero_do_cartao_invalido() {
-        TestRestTemplate restTemplate = new TestRestTemplate();
-
         PagamentoJson json = new PagamentoJson();
         json.setNumeroCartao(123);
         json.setCodigoSeguranca(90);
@@ -103,8 +106,6 @@ public class PagamentoRestClientWiremockTest {
 
     @Test
     public void validate_numero_do_cartao_nulo() {
-        TestRestTemplate restTemplate = new TestRestTemplate();
-
         PagamentoJson json = new PagamentoJson();
         json.setNumeroCartao(null);
         json.setCodigoSeguranca(90);
@@ -124,8 +125,6 @@ public class PagamentoRestClientWiremockTest {
 
     @Test
     public void validate_codigo_de_seguranca_nulo() {
-        TestRestTemplate restTemplate = new TestRestTemplate();
-
         PagamentoJson json = new PagamentoJson();
         json.setNumeroCartao(12345678);
         json.setCodigoSeguranca(null);
