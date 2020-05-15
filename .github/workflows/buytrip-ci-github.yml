@@ -4,28 +4,6 @@ on:
   
   push:
     branches: [ develop ]
-  # pull_request:
-  #   branches: [ master ]
-  #   types:
-  #    - labeled
-  #   branches: [master]
-  #   types: [opened, synchronize, closed]
-#     types:
-#       - labeled
-#       - unlabeled
-#       - synchronize
-#       - opened
-#       - edited
-#       - ready_for_review
-#       - reopened
-#       - unlocked
-  # pull_request_review:
-  #   types:
-  #     - submitted
-  # check_suite:
-  #   types:
-  #     - completed
-  # status: {}
 
 jobs:
   build:
@@ -36,74 +14,15 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-    - name: Maven Package
-      run: mvn -B veriry --file pom.xml
+    - name: Maven Verify
+      run: mvn veriry --file pom.xml
 
-
-  # pull-request:
-  #   needs: [ build ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Inspect PULL-REQUEST
-  #     run: |
-  #       echo This workflow on ${{ github.repository }} was started by ${{ github.actor }}    
-  #   - uses: actions/checkout@v2
-  #   - name: pull-request to master
-  #     uses: repo-sync/pull-request@v2
-  #     with:
-  #       source_branch: ""                                  
-  #       destination_branch: "master"                      
-  #       pr_title: "Pulling ${{ github.ref }} into master" 
-  #       pr_label: "Tested"
-  #       github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  # merge-branch:
-  #   needs: [ pull-request ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Inspect MERGE-BRANCH
-  #     run: |
-  #       echo This workflow on ${{ github.repository }} was started by ${{ github.actor }} 
-  #   - uses: actions/checkout@master
-  #   - name: Merge by labeled
-  #     uses: devmasx/merge-branch@v1.1.0
-  #     with:
-  #       label_name: 'Tested'
-  #       target_branch: 'master'
-  #     env:
-  #       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-  # automerge:
-  #   needs: [ pull-request ]
-  #   # if: github.base_ref == 'master'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: checkout 
-  #     uses: actions/checkout@v2
-  #     with:
-  #       ref: master
-  #   - name: AUTOMERGE
-  #     uses: actions/github-script@0.2.0
-  #     with:
-  #       script: |
-  #         github.pullRequests.merge({
-  #           owner: context.payload.repository.owner.login,
-  #           repo: context.payload.repository.name,
-  #           pull_number: context.payload.pull_request.number
-  #         })
-  #       github-token: "${{ github.token }}"     
-        
-        
-
-  # automerge:
-    # needs: [ pull-request ]
-    # runs-on: ubuntu-latest
-    # steps:
-    #   - uses: actions/checkout@master
-    #   - name: automerge no buytrip-ci-github
-    #     uses: "pascalgn/automerge-action@80acb0f883348dcfd0e526288f7d27a12b9333be"
-    #     env:
-    #       GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-    #       MERGE_LABELS: "Tested"
-    #       MERGE_RETRIES: "3"
-    #       MERGE_RETRY_SLEEP: "10000"
+  pull-request:
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
