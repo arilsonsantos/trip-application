@@ -1,17 +1,23 @@
-spring:
-  devtools:
-    livereload:
-      port: 38084
-      add-properties: false
-  main:
-    lazy-initialization: true
-    banner-mode: off
+server:
+  port: 8383
 
 eureka:
   instance:
     hostname: localhost
   client:
-    register-with-eureka: false
+    register-with-eureka: true
     fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  application:
+    name: buytrip-servicediscovery
+
+---
+
+spring:
+  application:
+    name: buytrip-servicediscovery
+  profiles:
+    - dev

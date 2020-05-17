@@ -3,7 +3,7 @@ server:
 
 spring:
   main:
-    lazy-initialization: true
+ #   lazy-initialization: true
     banner-mode: off
   output:
     ansi:

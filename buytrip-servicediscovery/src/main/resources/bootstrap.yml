@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: buytrip-servicediscovery
   cloud:
     config:
       uri:

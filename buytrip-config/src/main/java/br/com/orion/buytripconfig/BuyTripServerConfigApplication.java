@@ -9,6 +9,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 public class BuyTripServerConfigApplication {
 
 	public static void main(String[] args) {
+		System.setProperty("spring.devtools.add-properties", "false");
 		SpringApplication.run(BuyTripServerConfigApplication.class, args);
 	}
 

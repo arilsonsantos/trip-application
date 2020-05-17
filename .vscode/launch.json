@@ -15,7 +15,7 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "br.com.orion.bank.BankApplication",
             "projectName": "bank",
-            "vmArgs": "-noverify"
+            "vmArgs": "-noverify -Dspring.profiles.active=dev"
         },
         {
             "name": "buytrip service discovery",
@@ -24,7 +24,7 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "br.com.orion.buytripservicediscovery.BuyTripServiceDiscoveryApplication",
             "projectName": "buytripservicediscovery",
-            "vmArgs": "-noverify"
+            "vmArgs": "-noverify -Dspring.profiles.active=dev"
         },
         {
             "name": "buytrip 8180",
