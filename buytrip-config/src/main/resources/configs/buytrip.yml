@@ -1,16 +1,14 @@
 spring:
   devtools:
     livereload:
-      port: 38080
+      port: 35712
       add-properties: false
-  main:
-    lazy-initialization: true
-    banner-mode: off
+
+---
+
+spring:
   profiles: dev
   cloud:
-    loadbalancer:
-      ribbon:
-        enable: false
     stream:
       bindings:
         compraOut:
@@ -31,18 +29,8 @@ spring:
 ---
 
 spring:
-  devtools:
-    livereload:
-      port: 38080
-      add-properties: false
-  main:
-    lazy-initialization: true
-    banner-mode: off
   profiles: prod
   cloud:
-    loadbalancer:
-      ribbon:
-        enable: false
     stream:
       bindings:
         compraOut:

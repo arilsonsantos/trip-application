@@ -8,6 +8,13 @@ spring:
   output:
     ansi:
       enabled: always
+  main:
+    banner-mode: off
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+ 
 
 logging:
   level:

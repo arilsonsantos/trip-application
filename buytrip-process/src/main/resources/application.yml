@@ -1,9 +1,20 @@
-server:
-  port: 8185
-
+bank:
+  link: http://localhost:8081/pagamentos
+  
 spring:
   application:
     name: buytrip-process
+  output:
+    ansi:
+      enabled: always
 
-bank:
-  link: http://localhost:8081/pagamentos
+---
+
+spring:
+  profiles:
+  - test
+  main:
+    lazy-initialization: true
+    banner-mode: off
+ 
+
