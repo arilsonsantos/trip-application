@@ -52,13 +52,6 @@
             "request": "launch",
             "mainClass": "br.com.orion.buygateway.BuyGatewayApplication",
             "projectName": "buygateway"
-        },
-        {
-            "type": "java",
-            "name": "buyprocess",
-            "request": "launch",
-            "mainClass": "br.com.orion.buyprocess.BuyProcessApplication",
-            "projectName": "client"
         }
     ]
 }

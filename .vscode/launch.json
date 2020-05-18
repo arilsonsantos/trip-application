@@ -49,9 +49,9 @@
             "name": "buytrip process",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "br.com.orion.buyprocess.BuyProcessApplication",
+            "mainClass": "br.com.orion.buytripprocess.BuytripProcessApplication",
             "projectName": "buyprocess",
-            "vmArgs": "-noverify"
+            "vmArgs": "-noverify -Dspring.profiles.active=dev"
         },
         {
             "name": "buytrip feedback",
