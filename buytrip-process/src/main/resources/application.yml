@@ -1,3 +1,6 @@
+bank:
+  link: http://localhost:8081/pagamentos
+  
 spring:
   application:
     name: buytrip-process

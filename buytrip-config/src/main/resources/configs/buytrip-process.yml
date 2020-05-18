@@ -1,9 +1,6 @@
 server:
   port: 8185
 
-bank:
-  link: http://localhost:8081/pagamentos
-
 ---
 
 spring:
