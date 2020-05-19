@@ -4,6 +4,7 @@ package br.com.orion.buytrip.controller;
 import java.util.UUID;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,29 +27,29 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class CompraController {
 
-	//private final Source source;
-	private final CompraBinding.ICompraOutputChannel compraChannel;
+    //private final Source source;
+    private final CompraBinding.ICompraOutputChannel compraChannel;
 
-	@PostMapping
-	public ResponseEntity<RetornoDto> pagamento(@Valid @NotNull @RequestBody CompraDto compraDto)
-			throws Exception {
+    @PostMapping
+    public ResponseEntity<RetornoDto> pagamento(@Valid @NotNull @RequestBody CompraDto compraDto)
+            throws Exception {
 
-		CompraChaveDto compraChaveDto = new CompraChaveDto();
-		compraChaveDto.setCompraDto(compraDto);
-		compraChaveDto.setChave(UUID.randomUUID().toString());
+        CompraChaveDto compraChaveDto = new CompraChaveDto();
+        compraChaveDto.setCompraDto(compraDto);
+        compraChaveDto.setChave(UUID.randomUUID().toString());
 
-		ObjectMapper obj = new ObjectMapper();
-		String json = obj.writeValueAsString(compraChaveDto);
+        ObjectMapper obj = new ObjectMapper();
+        String json = obj.writeValueAsString(compraChaveDto);
 
-		compraChannel.compra().send(MessageBuilder.withPayload(json).build());
+        compraChannel.compra().send(MessageBuilder.withPayload(json).build());
 
-		RetornoDto retorno = new RetornoDto();
-		retorno.setMensagem("Compra registrada com sucesso. Aguarda a confirmação do pagamento.");
-		retorno.setChavePesquisa(compraChaveDto.getChave());
+        RetornoDto retorno = new RetornoDto();
+        retorno.setMensagem("Compra registrada com sucesso. Aguarda a confirmação do pagamento.");
+        retorno.setChavePesquisa(compraChaveDto.getChave());
 
-		log.info(retorno.getChavePesquisa());
+        log.info(retorno.getChavePesquisa());
 
-		return new ResponseEntity<RetornoDto>(retorno, HttpStatus.OK);
-	}
+        return new ResponseEntity<>(retorno, HttpStatus.OK);
+    }
 
 }
