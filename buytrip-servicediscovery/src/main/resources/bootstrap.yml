@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: buytrip-servicediscovery
-  cloud:
-    config:
-      uri:
-      - http://localhost:8888/

@@ -31,13 +31,10 @@ public class ListenerService {
     @HystrixCommand(fallbackMethod = "reliable")
     @StreamListener(ICompraProcessChannel.INPUT)
     public void readingList(String message) throws IOException {
-        String json = message;
-
-        log.info("Mensagem recebida: {}", json);
+        log.info("Mensagem recebida: {}", message);
 
         ObjectMapper mapper = new ObjectMapper();
-        CompraChaveDto compraChaveJson = mapper.readValue(json, CompraChaveDto.class);
-
+        CompraChaveDto compraChaveJson = mapper.readValue(message, CompraChaveDto.class);
         PagamentoRetornoDto pg = bank.pagar(compraChaveJson);
 
         CompraFinalizadaDto compraFinalizadaJson = new CompraFinalizadaDto();

@@ -16,6 +16,7 @@ spring:
 --- 
 
 spring:
+
   profiles: dev
   datasource:
     driverClassName: org.h2.Driver

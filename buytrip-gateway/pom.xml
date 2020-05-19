@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>buygateway</artifactId>
+	<artifactId>buytrip-gateway</artifactId>
 	<name>buytrip-gateway</name>
 	
 	<dependencies>
