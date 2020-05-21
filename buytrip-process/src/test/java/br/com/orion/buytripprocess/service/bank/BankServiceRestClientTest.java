@@ -1,6 +1,7 @@
 package br.com.orion.buytripprocess.service.bank;
 
 import static java.util.Objects.requireNonNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
@@ -66,8 +67,8 @@ public class BankServiceRestClientTest {
         ResponseEntity<RetornoDto> retorno =
                 restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
 
-        Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(200);
-        Assertions.assertThat(requireNonNull(retorno.getBody()).getMensagem()).isEqualTo("Pagamento registrado com sucesso");
+        assertThat(retorno.getStatusCode().value()).isEqualTo(200);
+        assertThat(requireNonNull(retorno.getBody()).getMensagem()).isEqualTo("Pagamento registrado com sucesso");
         
     }
 
@@ -82,13 +83,13 @@ public class BankServiceRestClientTest {
         HttpHeaders headers = new HttpHeaders();
 
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<PagamentoDto> entity = new HttpEntity<PagamentoDto>(json, headers);
+        HttpEntity<PagamentoDto> entity = new HttpEntity<>(json, headers);
 
         ResponseEntity<RetornoDto> retorno =
                 restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
 
-        Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(406);
-        Assertions.assertThat(retorno.getBody().getMensagem()).isEqualTo("Não há saldo suficiente");
+        assertThat(retorno.getStatusCode().value()).isEqualTo(406);
+        assertThat(retorno.getBody().getMensagem()).isEqualTo("Não há saldo suficiente");
     }
 
     @Test
@@ -101,13 +102,13 @@ public class BankServiceRestClientTest {
         HttpHeaders headers = new HttpHeaders();
 
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<PagamentoDto> entity = new HttpEntity<PagamentoDto>(json, headers);
+        HttpEntity<PagamentoDto> entity = new HttpEntity<>(json, headers);
 
         ResponseEntity<RetornoDto> retorno =
                 restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
 
-        Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(406);
-        Assertions.assertThat(retorno.getBody().getMensagem()).isEqualTo("Cartão inválido");
+        assertThat(retorno.getStatusCode().value()).isEqualTo(406);
+        assertThat(retorno.getBody().getMensagem()).isEqualTo("Cartão inválido");
     }
 
     @Test
@@ -120,15 +121,15 @@ public class BankServiceRestClientTest {
         HttpHeaders headers = new HttpHeaders();
 
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<PagamentoDto> entity = new HttpEntity<PagamentoDto>(json, headers);
+        HttpEntity<PagamentoDto> entity = new HttpEntity<>(json, headers);
 
         ResponseEntity<RetornoDto> retorno =
                 restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
 
-        Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(400);
-        Assertions.assertThat(retorno.getBody().getMensagem()).isEqualTo("Argumentos inválidos");
-        Assertions.assertThat(retorno.getBody().getErros().size()).isEqualTo(1);
-        Assertions.assertThat(retorno.getBody().getErros().get("numeroCartao")).isEqualTo("Número do cartão não pode ser nulo");
+        assertThat(retorno.getStatusCode().value()).isEqualTo(400);
+        assertThat(retorno.getBody().getMensagem()).isEqualTo("Argumentos inválidos");
+        assertThat(retorno.getBody().getErros().size()).isEqualTo(1);
+        assertThat(retorno.getBody().getErros().get("numeroCartao")).isEqualTo("Número do cartão não pode ser nulo");
     }
 
     @Test
@@ -141,15 +142,15 @@ public class BankServiceRestClientTest {
         HttpHeaders headers = new HttpHeaders();
 
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<PagamentoDto> entity = new HttpEntity<PagamentoDto>(json, headers);
+        HttpEntity<PagamentoDto> entity = new HttpEntity<>(json, headers);
 
         ResponseEntity<RetornoDto> retorno =
                 restTemplate.postForEntity(PAGAMENTOS_API, entity, RetornoDto.class);
 
-        Assertions.assertThat(retorno.getStatusCode().value()).isEqualTo(400);
-        Assertions.assertThat(retorno.getBody().getMensagem()).isEqualTo("Argumentos inválidos");
-        Assertions.assertThat(retorno.getBody().getErros().size()).isGreaterThan(0);
-        Assertions.assertThat(retorno.getBody().getErros().get("codigoSeguranca")).isEqualTo("Código de segurança não pode ser nulo");
+        assertThat(retorno.getStatusCode().value()).isEqualTo(400);
+        assertThat(retorno.getBody().getMensagem()).isEqualTo("Argumentos inválidos");
+        assertThat(retorno.getBody().getErros().size()).isGreaterThan(0);
+        assertThat(retorno.getBody().getErros().get("codigoSeguranca")).isEqualTo("Código de segurança não pode ser nulo");
 
     }
 

@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>buytripservicediscovery</artifactId>
+	<artifactId>buytrip-service-discovery</artifactId>
 	<name>buytrip-service-discovery</name>
 
 	<dependencies>

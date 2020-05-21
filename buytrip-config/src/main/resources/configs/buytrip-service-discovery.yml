@@ -12,12 +12,12 @@ eureka:
 
 spring:
   application:
-    name: buytrip-servicediscovery
+    name: buytrip-service-discovery
 
 ---
 
 spring:
   application:
-    name: buytrip-servicediscovery
+    name: buytrip-service-discovery
   profiles:
     - dev
