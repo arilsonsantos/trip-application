@@ -32,7 +32,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(retorno, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(FeignException.BadRequest.class)  
+    @ExceptionHandler(FeignException.NotAcceptable.class)
     public Map<String, Object> handleFeignStatusException(FeignException e, HttpServletResponse response) {
         response.setStatus(e.status());
         return new JSONObject(e.contentUTF8()).toMap(); 
