@@ -11,7 +11,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class BuytripProcessApplication {
 
 	public static void main(String[] args) {
-		
 		SpringApplication.run(BuytripProcessApplication.class, args);
 	}
 

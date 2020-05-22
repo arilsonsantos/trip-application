@@ -1,15 +1,6 @@
 bank:
   link: http://localhost:8081/pagamentos
 
-# http://localhost:8185/actuator/bindings
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-          - bindings
-
-
 spring:
   application:
     name: buytrip-process
