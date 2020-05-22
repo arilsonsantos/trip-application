@@ -1,6 +1,14 @@
 server:
   port: 8185
 
+# http://localhost:8185/actuator/bindings
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - bindings
+
 ---
 
 spring:

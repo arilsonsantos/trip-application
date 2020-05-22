@@ -11,7 +11,6 @@ import br.com.orion.buytripprocess.dto.PagamentoDto;
 @FeignClient(url = "${bank.link}", name = "bank")
 public interface IBankClientService {
 
-
     @GetMapping
     ResponseEntity<BankRetornoDto> pagamento(@RequestBody PagamentoDto pagamento);
 

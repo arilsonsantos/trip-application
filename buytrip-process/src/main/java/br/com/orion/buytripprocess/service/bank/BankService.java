@@ -6,6 +6,7 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import feign.FeignException;
+import lombok.AllArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,13 +31,11 @@ import br.com.orion.buytripprocess.dto.PagamentoRetornoDto;
  * BankService
  */
 @Service
+@AllArgsConstructor
 public class BankService {
 
-    @Value("${bank.link}")
-    private String link;
-
-    @Autowired
     IBankClientService clientService;
+    ObjectMapper mapper;
 
     public PagamentoRetornoDto pagar(CompraChaveDto compraChaveJson) throws IOException {
         PagamentoDto json = new PagamentoDto();
@@ -44,7 +43,6 @@ public class BankService {
         json.setCodigoSeguranca(compraChaveJson.getCompraDto().getCodigoSeguranca());
         json.setValorCompra(compraChaveJson.getCompraDto().getValorPassagem());
 
-        ObjectMapper mapper = new ObjectMapper();
         try {
             final var executaPagamento = clientService.pagamento(json);
             return new PagamentoRetornoDto(executaPagamento.getBody().getMensagem(), true);
@@ -53,4 +51,5 @@ public class BankService {
             return new PagamentoRetornoDto(obj.getMensagem(), false);
         }
     }
+
 }
