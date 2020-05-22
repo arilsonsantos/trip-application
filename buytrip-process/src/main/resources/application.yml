@@ -1,12 +1,24 @@
 bank:
   link: http://localhost:8081/pagamentos
-  
+
+# http://localhost:8185/actuator/bindings
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - bindings
+
+
 spring:
   application:
     name: buytrip-process
   output:
     ansi:
-      enabled: always
+      enabled: ALWAYS
+  main:
+    banner-mode: OFF
+
 
 ---
 
@@ -15,6 +27,6 @@ spring:
   - test
   main:
     lazy-initialization: true
-    banner-mode: off
+    banner-mode: OFF
  
 

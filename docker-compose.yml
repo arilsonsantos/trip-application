@@ -10,7 +10,7 @@ services:
     hostname: host_rabbitmq
     image: rabbitmq:3.8.3-management-alpine
     volumes:
-      # - ./data/rabbitmq:/var/lib/rabbitmq/mnesia
+      - ./data/rabbitmq:/var/lib/rabbitmq/mnesia
       - ./scripts/definitions.json:/etc/rabbitmq/definitions.json
     ports:
       - "8700:15672"

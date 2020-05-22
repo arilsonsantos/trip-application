@@ -1,10 +1,16 @@
 package br.com.orion.buytripprocess.service.bank;
 
 import java.io.IOException;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import feign.FeignException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;
+import org.springframework.cloud.openfeign.support.SpringDecoder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -26,36 +32,25 @@ import br.com.orion.buytripprocess.dto.PagamentoRetornoDto;
 @Service
 public class BankService {
 
-	@Value("${bank.link}")
-	private String link;
+    @Value("${bank.link}")
+    private String link;
 
-	public PagamentoRetornoDto pagar(CompraChaveDto compraChaveJson) throws IOException {
-		
-		PagamentoDto json = new PagamentoDto();
-		json.setNumeroCartao(compraChaveJson.getCompraDto().getNumeroCartao());
-		json.setCodigoSeguranca(compraChaveJson.getCompraDto().getCodigoSeguranca());
-		json.setValorCompra(compraChaveJson.getCompraDto().getValorPassagem());
-		
-		RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    IBankClientService clientService;
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<PagamentoDto> entity = new HttpEntity<PagamentoDto>(json, headers);
+    public PagamentoRetornoDto pagar(CompraChaveDto compraChaveJson) throws IOException {
+        PagamentoDto json = new PagamentoDto();
+        json.setNumeroCartao(compraChaveJson.getCompraDto().getNumeroCartao());
+        json.setCodigoSeguranca(compraChaveJson.getCompraDto().getCodigoSeguranca());
+        json.setValorCompra(compraChaveJson.getCompraDto().getValorPassagem());
 
-		try {
-			ResponseEntity<BankRetornoDto> bankRetorno = restTemplate.exchange(link, HttpMethod.POST, entity, BankRetornoDto.class);
-			return new PagamentoRetornoDto(bankRetorno.getBody().getMensagem(), true);
-		}catch(HttpClientErrorException ex){
-			if( ex.getStatusCode() == HttpStatus.BAD_REQUEST ) {
-				ObjectMapper mapper = new ObjectMapper();
-				BankRetornoDto obj = mapper.readValue(ex.getResponseBodyAsString(), BankRetornoDto.class);
-				return new PagamentoRetornoDto(obj.getMensagem(), false);
-			}
-			throw ex;
-		}catch (RuntimeException ex) {
-			throw ex;
-		}
-
-	}
-
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            final var executaPagamento = clientService.pagamento(json);
+            return new PagamentoRetornoDto(executaPagamento.getBody().getMensagem(), true);
+        } catch (FeignException ex) {
+            BankRetornoDto obj = mapper.readValue(ex.contentUTF8(), BankRetornoDto.class);
+            return new PagamentoRetornoDto(obj.getMensagem(), false);
+        }
+    }
 }
