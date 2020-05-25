@@ -2,11 +2,20 @@
     "configurations": [
         {
             "type": "java",
-            "name": "buytrip service configuration",
+            "name": "buytrip server configuration",
             "request": "launch",
             "mainClass": "br.com.orion.buytripconfig.BuyTripServerConfigApplication",
             "projectName": "buytrip-config",
             "vmArgs": "-noverify"
+        },
+        {
+            "name": "buytrip service discovery",
+            "type": "java",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.orion.buytripservicediscovery.BuyTripServiceDiscoveryApplication",
+            "projectName": "buytrip-service-discovery",
+            "vmArgs": "-noverify -Dspring.profiles.active=dev"
         },
         {
             "name": "bank",
@@ -15,15 +24,6 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "br.com.orion.bank.BankApplication",
             "projectName": "bank",
-            "vmArgs": "-noverify -Dspring.profiles.active=dev"
-        },
-        {
-            "name": "buytrip service discovery",
-            "type": "java",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "br.com.orion.buytripservicediscovery.BuyTripServiceDiscoveryApplication",
-            "projectName": "buytripservicediscovery",
             "vmArgs": "-noverify -Dspring.profiles.active=dev"
         },
         {
@@ -50,7 +50,7 @@
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "br.com.orion.buytripprocess.BuytripProcessApplication",
-            "projectName": "buyprocess",
+            "projectName": "buytrip-process",
             "vmArgs": "-noverify -Dspring.profiles.active=dev"
         },
         {
@@ -59,7 +59,7 @@
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "br.com.orion.buyfeedback.BuyFeedbackApplication",
-            "projectName": "buyfeedback",
+            "projectName": "buytrip-feedback",
             "vmArgs": "-noverify"
         },
         {
@@ -68,7 +68,16 @@
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "br.com.orion.buygateway.BuyGatewayApplication",
-            "projectName": "buygateway",
+            "projectName": "buytrip-gateway",
+            "vmArgs": "-noverify"
+        },
+        {
+            "name": "buytrip gateway cloud",
+            "type": "java",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.orion.buytripgateway.GatewayApplication",
+            "projectName": "buytrip-gateway-cloud",
             "vmArgs": "-noverify"
         }
     ]

@@ -25,6 +25,7 @@
         <module>buytrip-config</module>
         <module>buytrip-feedback</module>
         <module>buytrip-gateway</module>
+        <module>buytrip-gateway-cloud</module>
         <module>buytrip-process</module>
         <module>buytrip-service-discovery</module>
     </modules>
