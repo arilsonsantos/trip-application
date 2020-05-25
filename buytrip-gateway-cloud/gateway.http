@@ -1,0 +1,20 @@
+@host = http://localhost:8586
+
+###
+
+{{host}}
+Host: orion.com.br 
+
+
+###
+
+POST {{host}}
+Content-Type: application/json
+
+{
+    "codigoPassagem":11,
+    "numeroCartao": 12345678,
+    "codigoSeguranca":90,
+    "valorPassagem":50
+}
+
