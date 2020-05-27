@@ -6,8 +6,8 @@ volumes:
 
 services:
   rabbitmq:
-    container_name: rabbitmq-buytrip
-    hostname: host_rabbitmq
+    container_name: rabbitmq
+    hostname: rabbitmq
     image: rabbitmq:3.8.3-management-alpine
     volumes:
       - ./data/rabbitmq:/var/lib/rabbitmq/mnesia
@@ -20,6 +20,7 @@ services:
       RABBITMQ_DEFAULT_USER: root
       RABBITMQ_DEFAULT_PASS: 123
       # RABBITMQ_DEFAULT_VHOST: my_virtual_host
+      TZ: "@timezone@"
 
   redis:
     image: redis:5.0.8-alpine
@@ -28,3 +29,18 @@ services:
       - ./data/redis:/data
     ports:
       - "6379:6379"
+    
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9410:9410"
+      - "9411:9411"
+    environment: 
+      - "TZ=@timezone@"
+      - "RABBIT_URI:amqp://quest@rabbitmq:5672"
+    depends_on: 
+      - rabbitmq
+
+
+
