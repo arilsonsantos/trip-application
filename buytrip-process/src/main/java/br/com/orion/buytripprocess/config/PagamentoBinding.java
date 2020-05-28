@@ -3,7 +3,7 @@ package br.com.orion.buytripprocess.config;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.SubscribableChannel;
+import org.springframework.messaging.MessageChannel;
 
 import br.com.orion.buytripprocess.config.PagamentoBinding.IPagamentoChannel;
 
@@ -16,7 +16,7 @@ public class PagamentoBinding {
         String OUTPUT = "pagamentoOut";
 
         @Output(OUTPUT)
-        SubscribableChannel output();
+        MessageChannel output();
         
     }
 
