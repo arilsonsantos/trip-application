@@ -3,7 +3,7 @@ package br.com.orion.buytrip.config;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.SubscribableChannel;
+import org.springframework.messaging.MessageChannel;
 
 @Configuration
 @EnableBinding(CompraBinding.ICompraOutputChannel.class)
@@ -13,7 +13,7 @@ public class CompraBinding {
         String OUTPUT = "compraOut";
 
         @Output(ICompraOutputChannel.OUTPUT)
-        public SubscribableChannel compra();
+        public MessageChannel compra();
     }
 
 }
