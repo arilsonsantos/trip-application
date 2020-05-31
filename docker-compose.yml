@@ -20,7 +20,6 @@ services:
       RABBITMQ_DEFAULT_USER: root
       RABBITMQ_DEFAULT_PASS: 123
       # RABBITMQ_DEFAULT_VHOST: my_virtual_host
-      TZ: "@timezone@"
 
   redis:
     image: redis:5.0.8-alpine
@@ -37,10 +36,18 @@ services:
       - "9410:9410"
       - "9411:9411"
     environment: 
-      - "TZ=@timezone@"
-      - "RABBIT_URI:amqp://quest@rabbitmq:5672"
+      - "RABBIT_URI:amqp://guest:guest@rabbitmq:5672"
     depends_on: 
       - rabbitmq
+
+  service-discovery:
+    container_name: service-discovery
+    image: arilsonsantos/buytrip-service-discovery
+    ports:
+      - 8383:8383
+    depends_on:
+      - zipkin
+    
 
 
 
