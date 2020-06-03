@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>br.com.orion</groupId>
-		<artifactId>modules</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+  <parent>
+    <groupId>br.com.orion</groupId>
+    <artifactId>modules</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
-  
+
   <artifactId>buytrip-gateway-cloud</artifactId>
   <name>buytrip-gateway-cloud</name>
 
@@ -42,6 +42,16 @@
       <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
       <scope>compile</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-zipkin</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-sleuth</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>

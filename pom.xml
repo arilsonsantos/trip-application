@@ -30,6 +30,19 @@
         <module>buytrip-service-discovery</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <scope>compile</scope>
+          </dependency>
+          <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <scope>compile</scope>
+          </dependency>
+    </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
