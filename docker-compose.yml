@@ -40,13 +40,13 @@ services:
     depends_on: 
       - rabbitmq
 
-  service-discovery:
-    container_name: service-discovery
-    image: arilsonsantos/buytrip-service-discovery
-    ports:
-      - 8383:8383
-    depends_on:
-      - zipkin
+  # service-discovery:
+  #   container_name: service-discovery
+  #   image: arilsonsantos/buytrip-service-discovery
+  #   ports:
+  #     - 8383:8383
+  #   depends_on:
+  #     - zipkin
     
 
 
