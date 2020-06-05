@@ -1,3 +1,6 @@
+bank:
+  link: http://localhost:8081/pagamentos
+  
 spring:
   application:
     name: buytrip-process
@@ -25,3 +28,6 @@ spring:
   cloud:
     config:
       enabled: false
+
+bank:
+  link: http://localhost:8081/pagamentos
