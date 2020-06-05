@@ -1,7 +1,12 @@
 spring:
   application:
     name: buytrip-service-discovery
-  cloud:
-    config:
-      uri:
-      - http://localhost:8888/
+  main:
+    # lazy-initialization: true
+    banner-mode: off
+  output:
+    ansi:
+      enabled: always
+
+
+

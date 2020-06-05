@@ -36,17 +36,17 @@ services:
       - "9410:9410"
       - "9411:9411"
     environment: 
-      - "RABBIT_URI:amqp://guest:guest@rabbitmq:5672"
+      - "RABBIT_URI:amqp://guest:guest@rabbitmq:5672/"
     depends_on: 
       - rabbitmq
 
-  service-discovery:
-    container_name: service-discovery
-    image: arilsonsantos/buytrip-service-discovery
-    ports:
-      - 8383:8383
-    depends_on:
-      - zipkin
+  # service-discovery:
+  #   container_name: service-discovery
+  #   image: arilsonsantos/buytrip-service-discovery
+  #   ports:
+  #     - 8383:8383
+  #   depends_on:
+  #     - zipkin
     
 
 

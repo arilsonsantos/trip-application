@@ -24,10 +24,3 @@ eureka:
 
 server:
   port: 8586
-
-sleuth:
-  sampler:
-    probability: 1.0 
- 
-
-
