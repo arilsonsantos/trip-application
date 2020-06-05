@@ -36,7 +36,7 @@ services:
       - "9410:9410"
       - "9411:9411"
     environment: 
-      - "RABBIT_URI:amqp://guest:guest@rabbitmq:5672"
+      - "RABBIT_URI:amqp://guest:guest@rabbitmq:5672/"
     depends_on: 
       - rabbitmq
 
