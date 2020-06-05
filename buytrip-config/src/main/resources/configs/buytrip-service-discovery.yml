@@ -1,6 +1,6 @@
 server:
   port: 8383
-
+  
 eureka:
   instance:
     hostname: localhost
@@ -9,15 +9,3 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-
-spring:
-  application:
-    name: buytrip-service-discovery
-
----
-
-spring:
-  application:
-    name: buytrip-service-discovery
-  profiles:
-    - dev

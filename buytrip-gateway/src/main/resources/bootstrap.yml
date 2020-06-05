@@ -1,6 +1,19 @@
 spring:
+  application:
+    name: buytrip-gateway
   cloud:
     config:
       uri:
       - http://localhost:8888/
+  main:
+  #  lazy-initialization: true
+    banner-mode: off  
+  output:
+    ansi:
+      enabled: always
 
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9411/

@@ -5,15 +5,12 @@ server:
 spring:
   application:
     name: buytrip
+
   output:
     ansi:
-      enabled: always
+      enabled: ALWAYS
   main:
     banner-mode: off
-  cloud:
-    loadbalancer:
-      ribbon:
-        enabled: false
   sleuth:
     sampler:
       probability: 1.0
@@ -23,5 +20,8 @@ spring:
 logging:
   level:
     org.springframework.web.filter.CommonsRequestLoggingFilter: error
+
+
+
 
 
