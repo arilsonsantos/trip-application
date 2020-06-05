@@ -11,6 +11,10 @@ eureka:
     service-url:
       defaultZone: http://localhost:8383/eureka/
 
+info:
+  application: ${spring.application.name}
+  port: ${server.port}
+
 ---
 
 spring:
@@ -32,6 +36,13 @@ spring:
                 username: guest
                 password: guest
                 virtual-host: /
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8383/eureka/
 
 ---
 
@@ -55,9 +66,4 @@ spring:
                 password: guest
                 virtual-host: /
 
-
-
-info:
-  application: ${spring.application.name}
-  port: ${server.port}
 
