@@ -4,7 +4,11 @@ spring:
       port: 35712
       add-properties: false
 
+server:
+  port: ${PORT:0}
 eureka:
+  instance:
+    instanceId: ${spring.cloud.client.hostname}:${spring.application.name}:${random.int[1,999999]}
   client:
     healthcheck:
       enabled: true
@@ -37,7 +41,11 @@ spring:
                 password: guest
                 virtual-host: /
 
+server:
+  port: ${PORT:0}
 eureka:
+  instance:
+    instanceId: ${spring.cloud.client.hostname}:${spring.application.name}:${random.int[1,999999]}
   client:
     healthcheck:
       enabled: true
