@@ -27,23 +27,14 @@
             "vmArgs": "-noverify -Dspring.profiles.active=dev"
         },
         {
-            "name": "buytrip 8180",
+            "name": "buytrip",
             "type": "java",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "br.com.orion.buytrip.BuyTripApplication",
             "projectName": "buytrip",
-            "vmArgs": "-Dserver.port=8180 -noverify -Dspring.profiles.active=dev"
-        },
-        {
-            "name": "buytrip 8181",
-            "type": "java",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "br.com.orion.buytrip.BuyTripApplication",
-            "projectName": "buytrip",
-            "vmArgs": "-Dserver.port=8181 -noverify -Dspring.profiles.active=dev"
-        },
+            "vmArgs": "-noverify -Dspring.profiles.active=dev"
+        },        
         {
             "type": "java",
             "name": "buytrip process",
